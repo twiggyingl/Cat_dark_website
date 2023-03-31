@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
 <div class="container">
   <!-- 左側side bar -->
@@ -35,14 +32,12 @@
     <div class="mobile_header">
       <div class="mobile_header_container">
         <div class="name">CAT</div>
-        <div>
-          <label for="mobile_menu_switch">
-            <img src="src/assets/toggle.png" alt="toggle">
-          </label>
+        <div @click="menuOpen()">
+          <img src="src/assets/toggle.png" alt="toggle">
         </div>
       </div>
-      <input type="checkbox" id="mobile_menu_switch">
-      <div class="mobile_menu">
+      <div class="mobile_menu"
+        v-if="viewStatus">
         <ul>
           <li><a href="Home">Home</a></li>
           <li><a href="Home2">Home2</a></li>
@@ -100,6 +95,17 @@
   </div>
 </div>
 </template>
+
+<script setup>
+  import {ref} from "@vue/reactivity"
+
+  const viewStatus =ref(false) //手機版menu預設關閉
+  
+  //開啟menu
+  const menuOpen = () => {
+    viewStatus.value = !viewStatus.value
+  }
+</script>
 
 <style scoped>
 </style>
